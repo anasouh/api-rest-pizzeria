@@ -1,0 +1,2 @@
+cd WEB-INF/src
+javac -d ../classes/ -cp ${CLASSPATH}:../lib/jackson-databind-2.15.3.jar:../lib/jackson-core-2.15.3.jar:../lib/jackson-annotations-2.15.3.jar:../../../../lib/servlet-api.jar:../classes/:. **/*.java
