@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS ingredients (
 CREATE TABLE IF NOT EXISTS pizzas (
     pid SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    basePrice DECIMAL(10, 2) NOT NULL
+    basePrice DECIMAL(10, 2) NOT NULL,
+    dough VARCHAR(25) NOT NULL DEFAULT 'classic'
 );
 
 CREATE TABLE IF NOT EXISTS compose (
