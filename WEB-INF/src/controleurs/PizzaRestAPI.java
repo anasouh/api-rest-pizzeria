@@ -52,9 +52,50 @@ public class PizzaRestAPI extends HttpServlet {
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String[] parts = splitPathInfo(req);
+        Pizza pizza;
+
+        if (parts.length <= 1) {
+            createPizza(req, resp);
+        } else if (parts.length == 2) {
+            if ((pizza = getPizzaOr404(parts[1], resp)) != null) {
+                Map<String, Object> map = jsonToMap(getBody(req));
+                if (map.containsKey("ingredient")) {
+                    Integer ingredientId;
+                    try {
+                        ingredientId = (Integer)map.get("ingredient");
+                    } catch (Exception e) {
+                        resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                        returnJSON("Ingredient must be an integer", resp);
+                        return;
+                    }
+                    IngredientDAO ingredientDao = new IngredientDAO();
+                    Ingredient ingredient = ingredientDao.findById(ingredientId);
+                    if (ingredient != null) {
+                        if (pizza.getIngredients().contains(ingredient)) {
+                            resp.setStatus(HttpServletResponse.SC_CONFLICT);
+                            returnJSON("Ingredient already exists in pizza", resp);
+                            return;
+                        }
+                        pizza.addIngredient(ingredient);
+                        dao.save(pizza);
+                        returnPizza(pizza, resp);
+                    } else {
+                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                        returnJSON("Ingredient not found", resp);
+                    }
+                } else {
+                    resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    returnJSON("Missing parameter: ingredient", resp);
+                }
+            }
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void createPizza(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json;charset=UTF-8");
         String jsonBody = getBody(req);
         List<String> missingParameters = hasMissingParameter(jsonBody, "id", "name", "basePrice", "dough", "ingredientsIds");

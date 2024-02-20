@@ -83,4 +83,18 @@ public class Pizza {
     public String toString() {
         return name + " (" + getPrice() + "€) : " + ingredients.toString();
     }
+
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+        Pizza p = (Pizza) o;
+        return p.getId() == this.id;
+    }
 }

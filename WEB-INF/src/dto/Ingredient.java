@@ -35,4 +35,17 @@ public class Ingredient {
     public String toString() {
         return name + " (" + price + "€)";
     }
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+        Ingredient i = (Ingredient) o;
+        return i.getId() == this.id;
+    }
 }
