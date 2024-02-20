@@ -30,6 +30,9 @@ public class IngredientRestAPI extends HttpServlet {
 
         try {
             if (parts.length > 1) {
+                if (!parts[2].equals("name")) {
+                    throw new Exception("Invalid path");
+                }
                 if ((ingredient = getIngredientOr404(parts[1], response)) != null) {
                     if (parts.length > 2) {
                         returnIngredientName(ingredient, response);
