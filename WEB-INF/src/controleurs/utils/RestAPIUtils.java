@@ -52,11 +52,21 @@ public class RestAPIUtils {
             while ((line = reader.readLine()) != null) {
                 sb.append(line);
             }
-            reader.close();
             reader.reset();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return sb.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    public static Map<String, Object> jsonToMap(String json) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(json, HashMap.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

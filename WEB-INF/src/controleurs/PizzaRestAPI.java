@@ -1,10 +1,11 @@
 package controleurs;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.IngredientDAO;
@@ -21,6 +22,7 @@ import static controleurs.utils.RestAPIUtils.JSON_NOT_FOUND;
 import static controleurs.utils.RestAPIUtils.returnJSON;
 import static controleurs.utils.RestAPIUtils.splitPathInfo;
 import static controleurs.utils.RestAPIUtils.hasMissingParameter;
+import static controleurs.utils.RestAPIUtils.jsonToMap;
 import static controleurs.utils.RestAPIUtils.getBody;
 
 @WebServlet("/pizzas/*")
@@ -50,17 +52,19 @@ public class PizzaRestAPI extends HttpServlet {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json;charset=UTF-8");
         String jsonBody = getBody(req);
-        List<String> missingParameters = hasMissingParameter(jsonBody, "id", "name", "baseprice", "dough", "ingredients");
+        List<String> missingParameters = hasMissingParameter(jsonBody, "id", "name", "basePrice", "dough", "ingredientsIds");
         if (!missingParameters.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             returnJSON("Missing parameters: " + missingParameters, resp);
             return;
         }
 
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         Pizza pizza = mapper.readValue(jsonBody, Pizza.class);
         if (dao.findById(pizza.getId()) != null) {
             resp.setStatus(HttpServletResponse.SC_CONFLICT);
@@ -68,7 +72,22 @@ public class PizzaRestAPI extends HttpServlet {
             return;
         }
         
-        // TODO: Ajouter les ingrédients à la pizza
+        Map<String, Object> map = jsonToMap(jsonBody);
+        try {
+            List<Integer> idList = (ArrayList<Integer>)map.get("ingredientsIds");;
+            pizza.addIngredients(idListToIngredientList(idList));
+        } catch (ClassCastException e) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            returnJSON("ingredientsIds must be an array of integers", resp);
+            return;
+        }
+
+        if (pizza.getIngredients().size() == 0) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            returnJSON("At least one ingredient is required", resp);
+            return;
+        }
+
         dao.save(pizza);
         resp.setStatus(201);
         returnPizza(pizza, resp);
