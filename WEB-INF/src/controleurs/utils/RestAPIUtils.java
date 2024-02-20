@@ -27,6 +27,7 @@ public class RestAPIUtils {
         return request.getPathInfo().split("/");
     }
 
+    @SuppressWarnings("unchecked")
     public static List<String> hasMissingParameter(String jsonBody, String... parameters) {
         ObjectMapper mapper = new ObjectMapper();
         List<String> missingParameters = new ArrayList<>();

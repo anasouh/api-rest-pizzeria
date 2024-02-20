@@ -49,20 +49,6 @@ public class IngredientDAO {
         return null;
     }
 
-    private int getNextId() {
-        try (Connection connection = ds.getConnection()) {
-            Statement stat = connection.createStatement();
-            stat.execute("SELECT MAX(iid) FROM ingredients");
-            ResultSet rs = stat.getResultSet();
-            if (rs.next()) {
-                return rs.getInt(1) + 1;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 1;
-    }
-
     public void save(Ingredient ingredient) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement stat = connection.prepareStatement("INSERT INTO ingredients (iid, name, price) VALUES (?, ?, ?)");
