@@ -92,21 +92,21 @@ public class PizzaRestAPI extends HttpServlet {
         resp.setStatus(201);
         returnPizza(pizza, resp);
     }
-/*
 
     @Override
     public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String[] parts = splitPathInfo(request);
-        Ingredient ingredient;
+        Pizza pizza;
         
         if (parts.length > 1) {
-            if ((ingredient = getIngredientOr404(parts[1], response)) != null) {
-                dao.delete(ingredient);
+            if ((pizza = getPizzaOr404(parts[1], response)) != null) {
+                dao.delete(pizza);
                 response.setStatus(204);
             }
+        } else {
+            response.setStatus(400);
         }
     }
-*/
 
     private Pizza getPizzaOr404(String id, HttpServletResponse response) throws IOException {
         try {
