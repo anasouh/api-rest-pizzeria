@@ -2,6 +2,7 @@ package controleurs;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,16 @@ public class PizzaRestAPI extends HttpServlet {
     private ObjectMapper mapper = new ObjectMapper();
     private PizzaDAO dao = new PizzaDAO();
 
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String method = req.getMethod();
+        if (!method.equals("PATCH")) {
+            super.service(req, resp);
+        }
+
+        this.doPatch(req, resp);
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String[] parts = splitPathInfo(request);
         Pizza pizza;
@@ -37,8 +48,8 @@ public class PizzaRestAPI extends HttpServlet {
         try {
             if (parts.length > 1) {
                 if ((pizza = getPizzaOr404(parts[1], response)) != null) {
-                    if (parts.length > 2) {
-                        returnPizzaName(pizza, response);
+                    if (parts.length > 2 && parts[2].equals("prixfinal")) {
+                        returnPizzaPrice(pizza, response);
                     } else {
                         returnPizza(pizza, response);
                     }
@@ -116,7 +127,7 @@ public class PizzaRestAPI extends HttpServlet {
         Map<String, Object> map = jsonToMap(jsonBody);
         try {
             List<Integer> idList = (ArrayList<Integer>)map.get("ingredientsIds");;
-            pizza.addIngredients(idListToIngredientList(idList));
+            pizza.addIngredients(idListToIngredientsArray(idList));
         } catch (ClassCastException e) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             returnJSON("ingredientsIds must be an array of integers", resp);
@@ -173,6 +184,44 @@ public class PizzaRestAPI extends HttpServlet {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    protected void doPatch(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String[] parts = splitPathInfo(request);
+        Pizza pizza;
+        
+        if (parts.length == 2) {
+            if ((pizza = getPizzaOr404(parts[1], response)) != null) {
+                try {
+                    Map<String, Object> map = jsonToMap(getBody(request));
+                    for (String key : map.keySet()) {
+                        switch (key) {
+                            case "name":
+                                pizza.setName((String)map.get(key));
+                                break;
+                            case "basePrice":
+                                pizza.setBasePrice((Integer)map.get(key));
+                                break;
+                            case "dough":
+                                pizza.setDough((String)map.get(key));
+                                break;
+                            case "ingredientsIds":
+                                List<Integer> idList = (ArrayList<Integer>)map.get(key);
+                                pizza.setIngredients(Arrays.asList(idListToIngredientsArray(idList)));
+                                break;
+                        }
+                    }
+                    dao.save(pizza);
+                    returnPizza(pizza, response);
+                } catch (Exception e) {
+                    response.setStatus(400);
+                    return;
+                }
+            }
+        } else {
+            response.setStatus(400);
+        }
+    }
+
     private Pizza getPizzaOr404(String id, HttpServletResponse response) throws IOException {
         try {
             int idInt = Integer.parseInt(id);
@@ -195,11 +244,11 @@ public class PizzaRestAPI extends HttpServlet {
         returnJSON(json, response);
     }
 
-    private void returnPizzaName(Pizza pizza, HttpServletResponse response) throws IOException {
+    private void returnPizzaPrice(Pizza pizza, HttpServletResponse response) throws IOException {
         if (pizza == null) {
             response.setStatus(404);
         }
-        String json = mapper.writeValueAsString(pizza.getName());
+        String json = mapper.writeValueAsString(pizza.getPrice());
         returnJSON(json, response);
     }
 
@@ -208,7 +257,7 @@ public class PizzaRestAPI extends HttpServlet {
         returnJSON(json, response);
     }
 
-    private Ingredient[] idListToIngredientList(List<Integer> idList) {
+    private Ingredient[] idListToIngredientsArray(List<Integer> idList) {
         IngredientDAO ingredientDao = new IngredientDAO();
         return ingredientDao.findByIds(idList);
     }

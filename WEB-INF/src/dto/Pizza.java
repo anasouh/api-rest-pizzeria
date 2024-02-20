@@ -58,6 +58,10 @@ public class Pizza {
         return ingredients;
     }
 
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
     }
