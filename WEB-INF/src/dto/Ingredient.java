@@ -32,4 +32,7 @@ public class Ingredient {
     public void setPrice(int price) {
         this.price = price;
     }
+    public String toString() {
+        return name + " (" + price + "€)";
+    }
 }
