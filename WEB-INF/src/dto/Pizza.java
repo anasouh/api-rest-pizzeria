@@ -62,6 +62,12 @@ public class Pizza {
         this.ingredients.add(ingredient);
     }
 
+    public void addIngredients(Ingredient ... ingredients) {
+        for (Ingredient ingredient : ingredients) {
+            addIngredient(ingredient);
+        }
+    }
+
     public void removeIngredient(Ingredient ingredient) {
         this.ingredients.remove(ingredient);
     }

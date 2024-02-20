@@ -49,6 +49,17 @@ public class IngredientDAO {
         return null;
     }
 
+    public Ingredient[] findByIds(List<Integer> ids) {
+        List<Ingredient> ingredients = new ArrayList<Ingredient>();
+        for (int id : ids) {
+            Ingredient ingredient = findById(id);
+            if (ingredient != null) {
+                ingredients.add(ingredient);
+            }
+        }
+        return ingredients.toArray(new Ingredient[0]);
+    }
+
     public void save(Ingredient ingredient) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement stat = connection.prepareStatement("INSERT INTO ingredients (iid, name, price) VALUES (?, ?, ?)");
