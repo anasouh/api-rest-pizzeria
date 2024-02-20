@@ -66,9 +66,8 @@ public class IngredientDAO {
     public void save(Ingredient ingredient) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement stat = connection.prepareStatement("INSERT INTO ingredients (iid, name, price) VALUES (?, ?, ?)");
-            int id = getNextId();
-            ingredient.setId(id);
-            stat.setInt(1, id);
+            ingredient.setId(ingredient.getId());
+            stat.setInt(1, ingredient.getId());
             stat.setString(2, ingredient.getName());
             stat.setInt(3, ingredient.getPrice());
             stat.executeUpdate();

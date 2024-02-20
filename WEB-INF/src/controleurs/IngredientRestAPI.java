@@ -1,6 +1,8 @@
 package controleurs;
 
 import java.io.IOException;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.IngredientDAO;
@@ -14,6 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import static controleurs.utils.RestAPIUtils.JSON_NOT_FOUND;
 import static controleurs.utils.RestAPIUtils.returnJSON;
 import static controleurs.utils.RestAPIUtils.splitPathInfo;
+import static controleurs.utils.RestAPIUtils.hasMissingParameter;
+import static controleurs.utils.RestAPIUtils.getBody;
 
 @WebServlet("/ingredients/*")
 public class IngredientRestAPI extends HttpServlet {
@@ -45,10 +49,18 @@ public class IngredientRestAPI extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json;charset=UTF-8");
+        String jsonBody = getBody(req);
+        List<String> missingParameters = hasMissingParameter(jsonBody, "id", "name", "price");
+        if (!missingParameters.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            returnJSON("Missing parameters: " + missingParameters, resp);
+            return;
+        }
 
-        Ingredient ingredient = mapper.readValue(req.getReader(), Ingredient.class);
+        Ingredient ingredient = mapper.readValue(jsonBody, Ingredient.class);
         if (daoList.findById(ingredient.getId()) != null) {
-            resp.sendError(HttpServletResponse.SC_CONFLICT, "Ingredient already exists");
+            resp.setStatus(HttpServletResponse.SC_CONFLICT);
+            returnJSON("Ingredient already exists", resp);
             return;
         }
         
