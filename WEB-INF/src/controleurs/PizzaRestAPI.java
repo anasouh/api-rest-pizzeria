@@ -139,10 +139,34 @@ public class PizzaRestAPI extends HttpServlet {
         String[] parts = splitPathInfo(request);
         Pizza pizza;
         
-        if (parts.length > 1) {
+        if (parts.length == 2) {
             if ((pizza = getPizzaOr404(parts[1], response)) != null) {
                 dao.delete(pizza);
                 response.setStatus(204);
+            }
+        } else if (parts.length == 3) {
+            if ((pizza = getPizzaOr404(parts[1], response)) != null) {
+                Integer ingredientId;
+                try {
+                    ingredientId = Integer.parseInt(parts[2]);
+                } catch (Exception e) {
+                    response.setStatus(400);
+                    return;
+                }
+                IngredientDAO ingredientDao = new IngredientDAO();
+                Ingredient ingredient = ingredientDao.findById(ingredientId);
+                if (ingredient != null) {
+                    if (pizza.getIngredients().contains(ingredient)) {
+                        pizza.removeIngredient(ingredient);
+                        dao.save(pizza);
+                        response.setStatus(204);
+                        return;
+                    } else {
+                        response.setStatus(400);
+                        returnJSON("Ingredient not found in pizza", response);
+                    }
+                }
+                response.setStatus(404);
             }
         } else {
             response.setStatus(400);
