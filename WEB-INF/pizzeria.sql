@@ -6,8 +6,7 @@ drop table if exists ingredients;
 drop table if exists users;
 
 CREATE TABLE IF NOT EXISTS users (
-    uid SERIAL PRIMARY KEY,
-    login VARCHAR(255) NOT NULL,
+    login VARCHAR(25) PRIMARY KEY,
     password VARCHAR(255) NOT NULL
 );
 
@@ -34,7 +33,8 @@ CREATE TABLE IF NOT EXISTS compose (
 
 CREATE TABLE IF NOT EXISTS orders (
     oid SERIAL PRIMARY KEY,
-    uid INT REFERENCES users(uid)
+    login VARCHAR(25) REFERENCES users(login),
+    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS contains (
