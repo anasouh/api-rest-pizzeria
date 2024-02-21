@@ -91,16 +91,14 @@ public class OrderDAO {
     private void fillPizzas(Order order) {
         PizzaDAO pizzaDao = new PizzaDAO();
         try (Connection connection = ds.getConnection()) {
-            PreparedStatement stat = connection.prepareStatement("SELECT (pid, quantity) FROM compose WHERE pid = ?");
+            PreparedStatement stat = connection.prepareStatement("SELECT * FROM contains WHERE oid = ?");
             stat.setInt(1, order.getId());
             ResultSet rs = stat.executeQuery();
             while (rs.next()) {
                 int pid = rs.getInt("pid");
                 int quantity = rs.getInt("quantity");
                 Pizza pizza = pizzaDao.findById(pid);
-                for (int i = 0; i < quantity; i++) {
-                    order.addPizza(pizza);
-                }
+                order.setPizzaQuantity(pizza, quantity);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,7 +119,7 @@ public class OrderDAO {
 
                 stat.setInt(1, order.getId());
                 stat.setInt(2, pizza.getId());
-                stat.setInt(3, 1); // TODO: quantity
+                stat.setInt(3, order.getPizzaQuantity(pizza));
                 stat.addBatch();
             }
             stat.executeBatch();

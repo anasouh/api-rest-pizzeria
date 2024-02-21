@@ -16,7 +16,7 @@ public class UserDAO {
 
     public User findByLogin(String login) {
         try (Connection con = ds.getConnection()) {
-            PreparedStatement stat = con.prepareStatement("SELECT (login, password) FROM users WHERE login = ?");
+            PreparedStatement stat = con.prepareStatement("SELECT * FROM users WHERE login = ?");
             stat.setString(1, login);
             ResultSet rs = stat.executeQuery();
             if (rs.next()) {
