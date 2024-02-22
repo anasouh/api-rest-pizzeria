@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import database.DS;
 import dto.Ingredient;
 import dto.Order;
@@ -111,15 +113,16 @@ public class OrderDAO {
             stat.setInt(1, order.getId());
             stat.executeUpdate();
             stat = connection.prepareStatement("INSERT INTO contains (oid, pid, quantity) VALUES (?, ?, ?)");
-            for (Pizza pizza : order.getPizzas()) {
+            for (Map.Entry<Pizza, Integer> entry : order.getPizzasEntrySet()) {
                 PizzaDAO pizzaDao = new PizzaDAO();
+                Pizza pizza = entry.getKey();
                 if (pizzaDao.findById(pizza.getId()) == null) {
                     pizzaDao.save(pizza);
                 }
 
                 stat.setInt(1, order.getId());
                 stat.setInt(2, pizza.getId());
-                stat.setInt(3, order.getPizzaQuantity(pizza));
+                stat.setInt(3, entry.getValue());
                 stat.addBatch();
             }
             stat.executeBatch();

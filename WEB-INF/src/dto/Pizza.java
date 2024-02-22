@@ -84,10 +84,7 @@ public class Pizza {
         return price;
     }
 
-    public String toString() {
-        return name + " (" + getPrice() + "€) : " + ingredients.toString();
-    }
-
+    @Override
     public boolean equals(Object o) {
         if (o == null) {
             return false;
@@ -100,5 +97,10 @@ public class Pizza {
         }
         Pizza p = (Pizza) o;
         return p.getId() == this.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

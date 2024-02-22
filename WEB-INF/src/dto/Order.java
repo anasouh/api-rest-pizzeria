@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Order {
     private int id;
@@ -47,7 +50,18 @@ public class Order {
     }
 
     public List<Pizza> getPizzas() {
-        return new ArrayList<>(pizzas.keySet());
+        List<Pizza> list = new ArrayList<>();
+        for (Map.Entry<Pizza, Integer> entry : pizzas.entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                list.add(entry.getKey());
+            }
+        }
+        return list;
+    }
+
+    @JsonIgnore
+    public Set<Map.Entry<Pizza, Integer>> getPizzasEntrySet() {
+        return pizzas.entrySet();
     }
 
     public void addPizza(Pizza pizza) {
