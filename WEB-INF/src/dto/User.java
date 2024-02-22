@@ -1,11 +1,11 @@
 package dto;
 
 public class User {
-    private String login, password;
+    private String login, token;
 
-    public User(String login, String password) {
+    public User(String login, String token) {
         this.login = login;
-        this.password = password;
+        this.token = token;
     }
 
     public User() {
@@ -15,16 +15,16 @@ public class User {
         return login;
     }
 
-    public String getPassword() {
-        return password;
+    public String getToken() {
+        return token;
     }
 
     public void setLogin(String login) {
         this.login = login;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setToken(String password) {
+        this.token = password;
     }
 
     @Override
