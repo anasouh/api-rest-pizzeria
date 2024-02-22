@@ -39,37 +39,7 @@
         },
         {
           "type": "http",
-          "name": "Liste des ingr-dients",
-          "seq": 1,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/ingredients/",
-            "method": "GET",
-            "headers": [],
-            "body": {
-              "mode": "none",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
-          }
-        },
-        {
-          "type": "http",
-          "name": "Cr-er un ingr-dient -id auto-",
+          "name": "Cr-er un ingr-dient",
           "seq": 4,
           "request": {
             "url": "http://localhost:8080/pizzeria/ingredients/",
@@ -100,10 +70,70 @@
         },
         {
           "type": "http",
+          "name": "Liste des ingr-dients",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/ingredients/",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
           "name": "R-cup-rer le nom d-un ingr-dient",
           "seq": 3,
           "request": {
             "url": "http://localhost:8080/pizzeria/ingredients/1/name/",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "R-cup-rer un ingr-dient",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/ingredients/1/",
             "method": "GET",
             "headers": [],
             "body": {
@@ -158,36 +188,6 @@
             "tests": "",
             "query": []
           }
-        },
-        {
-          "type": "http",
-          "name": "R-cup-rer un ingr-dient",
-          "seq": 2,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/ingredients/1/",
-            "method": "GET",
-            "headers": [],
-            "body": {
-              "mode": "none",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
-          }
         }
       ]
     },
@@ -197,68 +197,7 @@
       "items": [
         {
           "type": "http",
-          "name": "Supprimer une pizza",
-          "seq": 1,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/pizzas/1/",
-            "method": "DELETE",
-            "headers": [],
-            "body": {
-              "mode": "none",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
-          }
-        },
-        {
-          "type": "http",
-          "name": "Ajout d'un ingrédient",
-          "seq": 2,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/pizzas/1/",
-            "method": "POST",
-            "headers": [],
-            "body": {
-              "mode": "json",
-              "json": "{\n  \"ingredient\": 2\n}",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
-          }
-        },
-        {
-          "type": "http",
-          "name": "Ajout d'un ingrédient inexistant",
+          "name": "Ajout d-un ingr-dient inexistant",
           "seq": 3,
           "request": {
             "url": "http://localhost:8080/pizzeria/pizzas/1/",
@@ -289,209 +228,15 @@
         },
         {
           "type": "http",
-          "name": "Supprimer un ingrédient",
-          "seq": 4,
+          "name": "Ajout d-un ingr-dient",
+          "seq": 2,
           "request": {
-            "url": "http://localhost:8080/pizzeria/pizzas/1/1/",
-            "method": "DELETE",
+            "url": "http://localhost:8080/pizzeria/pizzas/1/",
+            "method": "POST",
             "headers": [],
             "body": {
-              "mode": "none",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
-          }
-        },
-        {
-          "type": "folder",
-          "name": "Créer",
-          "items": [
-            {
-              "type": "http",
-              "name": "Création d'une pizza (champ incorrect)",
-              "seq": 3,
-              "request": {
-                "url": "http://localhost:8080/pizzeria/pizzas/",
-                "method": "POST",
-                "headers": [],
-                "body": {
-                  "mode": "json",
-                  "json": "{\n    \"id\": 2,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": \"je ne suis pas une tableau d'int\"\n}",
-                  "formUrlEncoded": [],
-                  "multipartForm": []
-                },
-                "auth": {
-                  "mode": "none",
-                  "basic": {
-                    "username": "",
-                    "password": ""
-                  },
-                  "bearer": {
-                    "token": ""
-                  }
-                },
-                "script": {},
-                "vars": {},
-                "assertions": [],
-                "tests": "",
-                "query": []
-              }
-            },
-            {
-              "type": "http",
-              "name": "Création d'une pizza",
-              "seq": 1,
-              "request": {
-                "url": "http://localhost:8080/pizzeria/pizzas/",
-                "method": "POST",
-                "headers": [],
-                "body": {
-                  "mode": "json",
-                  "json": "{\n    \"id\": 1,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": [1]\n}",
-                  "formUrlEncoded": [],
-                  "multipartForm": []
-                },
-                "auth": {
-                  "mode": "none",
-                  "basic": {
-                    "username": "",
-                    "password": ""
-                  },
-                  "bearer": {
-                    "token": ""
-                  }
-                },
-                "script": {},
-                "vars": {},
-                "assertions": [],
-                "tests": "",
-                "query": []
-              }
-            },
-            {
-              "type": "http",
-              "name": "Création d'une pizza (sans ingrédients)",
-              "seq": 2,
-              "request": {
-                "url": "http://localhost:8080/pizzeria/pizzas/",
-                "method": "POST",
-                "headers": [],
-                "body": {
-                  "mode": "json",
-                  "json": "{\n    \"id\": 2,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": []\n}",
-                  "formUrlEncoded": [],
-                  "multipartForm": []
-                },
-                "auth": {
-                  "mode": "none",
-                  "basic": {
-                    "username": "",
-                    "password": ""
-                  },
-                  "bearer": {
-                    "token": ""
-                  }
-                },
-                "script": {},
-                "vars": {},
-                "assertions": [],
-                "tests": "",
-                "query": []
-              }
-            }
-          ]
-        },
-        {
-          "type": "folder",
-          "name": "Récupérer",
-          "items": [
-            {
-              "type": "http",
-              "name": "Récupérer une pizza",
-              "seq": 2,
-              "request": {
-                "url": "http://localhost:8080/pizzeria/pizzas/1/",
-                "method": "GET",
-                "headers": [],
-                "body": {
-                  "mode": "none",
-                  "formUrlEncoded": [],
-                  "multipartForm": []
-                },
-                "auth": {
-                  "mode": "none",
-                  "basic": {
-                    "username": "",
-                    "password": ""
-                  },
-                  "bearer": {
-                    "token": ""
-                  }
-                },
-                "script": {},
-                "vars": {},
-                "assertions": [],
-                "tests": "",
-                "query": []
-              }
-            },
-            {
-              "type": "http",
-              "name": "Récupérer les pizzas",
-              "seq": 1,
-              "request": {
-                "url": "http://localhost:8080/pizzeria/pizzas/",
-                "method": "GET",
-                "headers": [],
-                "body": {
-                  "mode": "none",
-                  "formUrlEncoded": [],
-                  "multipartForm": []
-                },
-                "auth": {
-                  "mode": "none",
-                  "basic": {
-                    "username": "",
-                    "password": ""
-                  },
-                  "bearer": {
-                    "token": ""
-                  }
-                },
-                "script": {},
-                "vars": {},
-                "assertions": [],
-                "tests": "",
-                "query": []
-              }
-            }
-          ]
-        },
-        {
-          "type": "http",
-          "name": "Récupérer le prix d'une pizza",
-          "seq": 5,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/pizzas/1/prixfinal/",
-            "method": "GET",
-            "headers": [],
-            "body": {
-              "mode": "none",
+              "mode": "json",
+              "json": "{\n  \"ingredient\": 2\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -523,6 +268,388 @@
             "body": {
               "mode": "json",
               "json": "{\n  \"name\": \"Magherita de la mama\",\n  \"ingredientsIds\": [1, 2]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "R-cup-rer le prix d-une pizza",
+          "seq": 5,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/pizzas/1/prixfinal/",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Supprimer un ingr-dient",
+          "seq": 4,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/pizzas/1/2/",
+            "method": "DELETE",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Supprimer une pizza",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/pizzas/1/",
+            "method": "DELETE",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "folder",
+          "name": "Cr-er",
+          "items": [
+            {
+              "type": "http",
+              "name": "Cr-ation d-une pizza -champ incorrect-",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8080/pizzeria/pizzas/",
+                "method": "POST",
+                "headers": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n    \"id\": 2,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": \"je ne suis pas une tableau d'int\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "auth": {
+                  "mode": "none",
+                  "basic": {
+                    "username": "",
+                    "password": ""
+                  },
+                  "bearer": {
+                    "token": ""
+                  }
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "query": []
+              }
+            },
+            {
+              "type": "http",
+              "name": "Cr-ation d-une pizza -sans ingr-dients-",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/pizzeria/pizzas/",
+                "method": "POST",
+                "headers": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n    \"id\": 2,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": []\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "auth": {
+                  "mode": "none",
+                  "basic": {
+                    "username": "",
+                    "password": ""
+                  },
+                  "bearer": {
+                    "token": ""
+                  }
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "query": []
+              }
+            },
+            {
+              "type": "http",
+              "name": "Cr-ation d-une pizza",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8080/pizzeria/pizzas/",
+                "method": "POST",
+                "headers": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n    \"id\": 1,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": [1]\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "auth": {
+                  "mode": "none",
+                  "basic": {
+                    "username": "",
+                    "password": ""
+                  },
+                  "bearer": {
+                    "token": ""
+                  }
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "query": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "R-cup-rer",
+          "items": [
+            {
+              "type": "http",
+              "name": "R-cup-rer les pizzas",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8080/pizzeria/pizzas/",
+                "method": "GET",
+                "headers": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "auth": {
+                  "mode": "none",
+                  "basic": {
+                    "username": "",
+                    "password": ""
+                  },
+                  "bearer": {
+                    "token": ""
+                  }
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "query": []
+              }
+            },
+            {
+              "type": "http",
+              "name": "R-cup-rer une pizza",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8080/pizzeria/pizzas/1/",
+                "method": "GET",
+                "headers": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "auth": {
+                  "mode": "none",
+                  "basic": {
+                    "username": "",
+                    "password": ""
+                  },
+                  "bearer": {
+                    "token": ""
+                  }
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "query": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Orders",
+      "items": [
+        {
+          "type": "http",
+          "name": "Créer une commande",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/orders/",
+            "method": "POST",
+            "headers": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"id\": 3,\n  \"login\": \"user\",\n  \"date\": \"2024-02-22\",\n  \"pizzasIds\": [1, 2, 2]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Récupérer une commande",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/orders/3/",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Récupérer les commandes",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/orders/",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Récupérer le prix d'une commande",
+          "seq": 4,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/orders/3/prixfinal",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
               "formUrlEncoded": [],
               "multipartForm": []
             },
