@@ -34,11 +34,12 @@ public class PizzaRestAPI extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getMethod();
-        if (!method.equals("PATCH")) {
+        if (method.equals("PATCH")) {
+            this.doPatch(req, resp);
+        } else {
             super.service(req, resp);
         }
-
-        this.doPatch(req, resp);
+        
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -155,7 +156,7 @@ public class PizzaRestAPI extends HttpServlet {
                 dao.delete(pizza);
                 response.setStatus(204);
             }
-        } else if (parts.length == 3) {
+        } else if (parts.length >= 3) {
             if ((pizza = getPizzaOr404(parts[1], response)) != null) {
                 Integer ingredientId;
                 try {
