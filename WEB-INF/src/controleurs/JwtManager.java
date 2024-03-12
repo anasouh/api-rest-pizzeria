@@ -24,7 +24,7 @@ public class JwtManager {
         SecretKey signingKey = Keys.hmacShaKeyFor(keyBytes);
 
         Instant now = Instant.now();
-        Instant expiration = now.plusSeconds(1200); // 20 mn
+        Instant expiration = now.plusSeconds(3600); // 20 mn
         Date expDate = Date.from(expiration);
 
         // Let's set the JWT Claims
