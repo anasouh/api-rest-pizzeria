@@ -13,7 +13,13 @@
           "request": {
             "url": "http://localhost:8080/pizzeria/ingredients/",
             "method": "POST",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                "enabled": true
+              }
+            ],
             "body": {
               "mode": "json",
               "json": "{\n  \"name\": \"poivrons\"\n}",
@@ -44,10 +50,16 @@
           "request": {
             "url": "http://localhost:8080/pizzeria/ingredients/",
             "method": "POST",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                "enabled": true
+              }
+            ],
             "body": {
               "mode": "json",
-              "json": "{\n  \"id\": 1,\n  \"name\": \"oignons\",\n  \"price\": 1\n}",
+              "json": "{\n  \"id\": 1,\n  \"name\": \"Tomato\",\n  \"price\": 2\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -165,10 +177,149 @@
           "request": {
             "url": "http://localhost:8080/pizzeria/ingredients/1/",
             "method": "DELETE",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                "enabled": true
+              }
+            ],
             "body": {
               "mode": "json",
               "json": "",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Orders",
+      "items": [
+        {
+          "type": "http",
+          "name": "Créer une commande",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/orders/",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"id\": 3,\n  \"login\": \"user\",\n  \"date\": \"2024-02-22\",\n  \"pizzasIds\": [1, 2, 2]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Récupérer le prix d'une commande",
+          "seq": 4,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/orders/3/",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Récupérer les commandes",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/orders/",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "auth": {
+              "mode": "none",
+              "basic": {
+                "username": "",
+                "password": ""
+              },
+              "bearer": {
+                "token": ""
+              }
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Récupérer une commande",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:8080/pizzeria/orders/3/",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -202,7 +353,13 @@
           "request": {
             "url": "http://localhost:8080/pizzeria/pizzas/1/",
             "method": "POST",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                "enabled": true
+              }
+            ],
             "body": {
               "mode": "json",
               "json": "{\n  \"ingredient\": 99\n}",
@@ -233,7 +390,13 @@
           "request": {
             "url": "http://localhost:8080/pizzeria/pizzas/1/",
             "method": "POST",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                "enabled": true
+              }
+            ],
             "body": {
               "mode": "json",
               "json": "{\n  \"ingredient\": 2\n}",
@@ -264,10 +427,16 @@
           "request": {
             "url": "http://localhost:8080/pizzeria/pizzas/1/",
             "method": "PATCH",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIzYWE5Y2Q3YWM4YWE0OTI3ODcwYzdkMDViYzZjOWU5MiIsImlhdCI6MTcxMDIzNzIzNywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjQwODM3fQ.Sq3J2xfPnTtGCpnxajKjwhbmAq8oHRtzS2rE9EIGaa1hxVJJZeqQKX8pQSVElG78",
+                "enabled": true
+              }
+            ],
             "body": {
               "mode": "json",
-              "json": "{\n  \"name\": \"Magherita de la mama\",\n  \"ingredientsIds\": [1, 2]\n}",
+              "json": "{  \n  \"name\": \"Magherita de la mama\",\n  \"ingredientsIds\": [1, 2]\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -325,7 +494,13 @@
           "request": {
             "url": "http://localhost:8080/pizzeria/pizzas/1/2/",
             "method": "DELETE",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                "enabled": true
+              }
+            ],
             "body": {
               "mode": "none",
               "formUrlEncoded": [],
@@ -355,7 +530,13 @@
           "request": {
             "url": "http://localhost:8080/pizzeria/pizzas/1/",
             "method": "DELETE",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                "enabled": true
+              }
+            ],
             "body": {
               "mode": "none",
               "formUrlEncoded": [],
@@ -389,7 +570,13 @@
               "request": {
                 "url": "http://localhost:8080/pizzeria/pizzas/",
                 "method": "POST",
-                "headers": [],
+                "headers": [
+                  {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                    "enabled": true
+                  }
+                ],
                 "body": {
                   "mode": "json",
                   "json": "{\n    \"id\": 2,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": \"je ne suis pas une tableau d'int\"\n}",
@@ -420,7 +607,13 @@
               "request": {
                 "url": "http://localhost:8080/pizzeria/pizzas/",
                 "method": "POST",
-                "headers": [],
+                "headers": [
+                  {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                    "enabled": true
+                  }
+                ],
                 "body": {
                   "mode": "json",
                   "json": "{\n    \"id\": 2,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": []\n}",
@@ -451,7 +644,13 @@
               "request": {
                 "url": "http://localhost:8080/pizzeria/pizzas/",
                 "method": "POST",
-                "headers": [],
+                "headers": [
+                  {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJqdGkiOiIyY2I0NTM3YTk1MDc0Zjk5ODUxMGViNjU2NzY4ZmUzZSIsImlhdCI6MTcxMDIzNTcyMywic3ViIjoiQXV0aGVudGlmaWNhdGlvbiBwb3VyIHRwMzMzIiwiaXNzIjoicGhpbGlwcGUubWF0aGlldUB1bml2LWxpbGxlLmZyIiwiZXhwIjoxNzEwMjM2OTIzfQ.4s6uU4ex_ojRtoCg6VnoFJsIWRCbcixgPnWbokNKaBNGQFnrbz63ZMyHWn94Z9yb",
+                    "enabled": true
+                  }
+                ],
                 "body": {
                   "mode": "json",
                   "json": "{\n    \"id\": 1,\n    \"name\": \"Magherita\",\n    \"basePrice\": 5,\n    \"dough\": \"classic\",\n    \"ingredientsIds\": [1]\n}",
@@ -546,131 +745,35 @@
       ]
     },
     {
-      "type": "folder",
-      "name": "Orders",
-      "items": [
-        {
-          "type": "http",
-          "name": "Créer une commande",
-          "seq": 1,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/orders/",
-            "method": "POST",
-            "headers": [],
-            "body": {
-              "mode": "json",
-              "json": "{\n  \"id\": 3,\n  \"login\": \"user\",\n  \"date\": \"2024-02-22\",\n  \"pizzasIds\": [1, 2, 2]\n}",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
+      "type": "http",
+      "name": "Token",
+      "seq": 1,
+      "request": {
+        "url": "http://localhost:8080/pizzeria/users/token",
+        "method": "GET",
+        "headers": [],
+        "body": {
+          "mode": "json",
+          "json": "{\"login\": \"user\", \"password\": \"user\"}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none",
+          "basic": {
+            "username": "",
+            "password": ""
+          },
+          "bearer": {
+            "token": ""
           }
         },
-        {
-          "type": "http",
-          "name": "Récupérer une commande",
-          "seq": 2,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/orders/3/",
-            "method": "GET",
-            "headers": [],
-            "body": {
-              "mode": "none",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
-          }
-        },
-        {
-          "type": "http",
-          "name": "Récupérer les commandes",
-          "seq": 3,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/orders/",
-            "method": "GET",
-            "headers": [],
-            "body": {
-              "mode": "none",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
-          }
-        },
-        {
-          "type": "http",
-          "name": "Récupérer le prix d'une commande",
-          "seq": 4,
-          "request": {
-            "url": "http://localhost:8080/pizzeria/orders/3/prixfinal",
-            "method": "GET",
-            "headers": [],
-            "body": {
-              "mode": "none",
-              "formUrlEncoded": [],
-              "multipartForm": []
-            },
-            "auth": {
-              "mode": "none",
-              "basic": {
-                "username": "",
-                "password": ""
-              },
-              "bearer": {
-                "token": ""
-              }
-            },
-            "script": {},
-            "vars": {},
-            "assertions": [],
-            "tests": "",
-            "query": []
-          }
-        }
-      ]
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "query": []
+      }
     }
   ],
   "environments": []

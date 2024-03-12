@@ -215,13 +215,21 @@ public class PizzaRestAPI extends HttpServlet {
                                 List<Integer> idList = (ArrayList<Integer>)map.get(key);
                                 pizza.setIngredients(Arrays.asList(idListToIngredientsArray(idList)));
                                 break;
+                            default:
+                                response.setStatus(400);
+                                returnJSON("Field \"" + key + "\" doesn't exist", response);
+                                return;
                         }
                     }
                     dao.save(pizza);
                     returnPizza(pizza, response);
                 } catch (Exception e) {
-                    response.setStatus(400);
-                    return;
+                    if (e instanceof IngredientNotFoundException) {
+                        response.setStatus(405);
+                        returnJSON(e.getMessage(), response);
+                    } else {
+                        response.setStatus(400);
+                    }
                 }
             }
         } else {
@@ -266,6 +274,10 @@ public class PizzaRestAPI extends HttpServlet {
 
     private Ingredient[] idListToIngredientsArray(List<Integer> idList) {
         IngredientDAO ingredientDao = new IngredientDAO();
-        return ingredientDao.findByIds(idList);
+        Ingredient[] ingredients = ingredientDao.findByIds(idList);
+        if (idList.size() != ingredients.length) {
+            throw new IngredientNotFoundException();
+        }
+        return ingredients;
     }
 }
