@@ -18,11 +18,25 @@ import static controleurs.utils.RestAPIUtils.returnJSON;
 import static controleurs.utils.RestAPIUtils.splitPathInfo;
 import static controleurs.utils.RestAPIUtils.hasMissingParameter;
 import static controleurs.utils.RestAPIUtils.getBody;
+import static controleurs.UserAuthentication.verifToken;
 
 @WebServlet("/ingredients/*")
 public class IngredientRestAPI extends HttpServlet {
     private ObjectMapper mapper = new ObjectMapper();
     private IngredientDAO daoList = new IngredientDAO();
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String method = req.getMethod();
+        if (method.equals("GET")) {
+            this.doGet(req, res);
+        } else {
+            if (!verifToken(req, res))
+                return;
+            super.service(req, res);
+        }
+        
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String[] parts = splitPathInfo(request);

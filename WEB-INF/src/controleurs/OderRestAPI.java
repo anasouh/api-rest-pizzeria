@@ -19,15 +19,30 @@ import dao.PizzaDAO;
 import dao.UserDAO;
 import dto.Order;
 import dto.Pizza;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import static controleurs.UserAuthentication.verifToken;
 
 @WebServlet("/orders/*")
 public class OderRestAPI extends HttpServlet {
     private OrderDAO dao = new OrderDAO();
     private ObjectMapper mapper = new ObjectMapper();
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String method = req.getMethod();
+        if (method.equals("GET")) {
+            this.doGet(req, res);
+        } else {
+            if (!verifToken(req, res))
+                return;
+            super.service(req, res);
+        }
+        
+    }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

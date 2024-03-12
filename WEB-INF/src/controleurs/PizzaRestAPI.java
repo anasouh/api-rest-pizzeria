@@ -25,6 +25,7 @@ import static controleurs.utils.RestAPIUtils.splitPathInfo;
 import static controleurs.utils.RestAPIUtils.hasMissingParameter;
 import static controleurs.utils.RestAPIUtils.jsonToMap;
 import static controleurs.utils.RestAPIUtils.getBody;
+import static controleurs.UserAuthentication.verifToken;
 
 @WebServlet("/pizzas/*")
 public class PizzaRestAPI extends HttpServlet {
@@ -32,12 +33,17 @@ public class PizzaRestAPI extends HttpServlet {
     private PizzaDAO dao = new PizzaDAO();
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String method = req.getMethod();
-        if (method.equals("PATCH")) {
-            this.doPatch(req, resp);
+        if (method.equals("GET")) {
+            this.doGet(req, res);
         } else {
-            super.service(req, resp);
+            if (!verifToken(req, res))
+                return;
+            if (method.equals("PATCH"))
+                doPatch(req, res);
+            else
+                super.service(req, res);
         }
         
     }

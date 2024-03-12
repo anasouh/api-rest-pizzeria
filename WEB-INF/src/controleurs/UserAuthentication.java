@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import dao.UserDAO;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,7 +46,23 @@ public class UserAuthentication extends HttpServlet {
             returnJSON("Missing parameters: login or password", response);
         }
     }
- 
+
+    public static boolean verifToken(HttpServletRequest req, HttpServletResponse res) {
+        String token = req.getHeader("Authorization");
+        if (token != null && token.startsWith("Bearer")) {
+            token = token.substring("Bearer".length()).trim();
+            try {
+                if (token != null && token.length() > 0) {
+                    Claims claims = JwtManager.decodeJWT(token);
+                    return true;
+                }
+            } catch (Exception e) {
+            }
+        }
+        res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        return false;
+    }
+
     private boolean isValidString(String s) {
         return s != null && !s.isEmpty();
     }
