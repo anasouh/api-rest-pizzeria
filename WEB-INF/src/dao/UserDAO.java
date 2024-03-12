@@ -36,7 +36,7 @@ public class UserDAO {
             stat.setString(2, password);
             ResultSet rs = stat.executeQuery();
             if (rs.next()) {
-                return new User(login, rs.getString("password"));
+                return new User(login, password);
             }
         } catch (Exception e) {
             e.printStackTrace();
