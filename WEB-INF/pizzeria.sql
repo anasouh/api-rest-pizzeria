@@ -45,3 +45,5 @@ CREATE TABLE IF NOT EXISTS contains (
     CONSTRAINT fk_orders FOREIGN KEY (oid) REFERENCES orders(oid) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_pizzas_contains FOREIGN KEY (pid) REFERENCES pizzas(pid) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+insert into users (login, password) values ('user', 'user');

@@ -1,7 +1,5 @@
 # API REST : Pizzeria
 
-Anas Ouhdda
-
 ## Mise en place
 
 1. Créer une base de données et importer le fichier [`pizzeria.sql`](WEB-INF/pizzeria.sql)

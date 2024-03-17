@@ -1,4 +1,4 @@
-driver=
-url=
-login=
-password=
+driver=org.postgresql.Driver
+url=jdbc:postgresql://psqlserv/but2
+login=anasouhddaetu
+password=moi
